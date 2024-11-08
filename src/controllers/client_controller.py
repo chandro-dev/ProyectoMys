@@ -3,6 +3,7 @@ from src.config import SessionLocal
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
+from src.models.persons_models import Person
 
 router = APIRouter()
 
@@ -31,3 +32,8 @@ client_controller = ClientController()
 @router.get("/status")
 def get_status():
     return client_controller.get_tables()
+
+@router.get("/person")
+def get_person():
+    db = SessionLocal()
+    return db.query(Person).all()
