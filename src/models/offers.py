@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from src.config import Base
-class Publicidad(Base):
+class Offers(Base):
     __tablename__ = "publicidades"  # Nombre de la tabla en la base de datos
 
     id = Column("id_publicidad",Integer, primary_key=True, index=True)
