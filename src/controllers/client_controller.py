@@ -1,10 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException,Body, Path, Query
 from src.config import SessionLocal
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
 from src.models.persons_models import Person
-from src.models.reminders_models import Reminders
+
 
 router = APIRouter()
 
@@ -39,7 +39,5 @@ def get_person():
     db = SessionLocal()
     return db.query(Person).all()
 
-@router.get("/reminder")
-def get_reminder():
-    db = SessionLocal()
-    return db.query(Reminders).all()
+
+    
