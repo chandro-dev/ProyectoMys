@@ -3,7 +3,8 @@ from src.config import SessionLocal
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
-from src.models.persons_models import Person
+from src.mappers.clients_mapper import PersonSchema
+from src.services.clients_service import get_all_clients,get_client_by_id,update_client,delete_client,saveClient
 
 
 router = APIRouter()
@@ -28,16 +29,23 @@ class ClientController:
 # Crear una instancia del controlador y añadir sus rutas al router
 client_controller = ClientController()
 
+@router.post("/clients",tags=['Clientes'])
+def insert_client(person:PersonSchema = Body()):
+    return saveClient(person)
 
 # Agregar la ruta usando el método del controlador
-@router.get("/status")
-def get_status():
-    return client_controller.get_tables()
+@router.get("/clients",tags=['Clientes'])
+def get_clients():
+    return get_all_clients()
 
-@router.get("/person")
-def get_person():
-    db = SessionLocal()
-    return db.query(Person).all()
+@router.get("/client/{idCLient}",tags=['Clientes'])
+def get_client(idCLient:str = Path):
+    return get_client_by_id(idCLient)
 
+@router.put("/updateClient/{idClient}",tags=['Clientes'])
+def updateClient(idClient:str = Path, bussiness:str = Path):
+    return update_client(idClient,bussiness)
 
-    
+@router.delete("/deleteClient/{idClient}",tags=['Clientes'])
+def deleteClient(idClient:str = Path):
+    return delete_client(idClient)   
