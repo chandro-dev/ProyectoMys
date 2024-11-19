@@ -1,6 +1,5 @@
 from src.config import SessionLocal
 from sqlalchemy.exc import SQLAlchemyError
-from src.models.persons_models import Person
 from src.models.clients_Models import Clients
 from src.services.persons_service import save_person
 from src.mappers.clients_mapper import PersonSchema
