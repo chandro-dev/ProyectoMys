@@ -1,2 +1,13 @@
 env
-*__pychache__*
+# Ignorar archivos pycache generados por Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar el archivo de configuración de entornos virtuales
+venv/
+.env/
+
+# Ignorar la carpeta de instalación de paquetes de Python (si usas pipenv o similares)
+.Pipfile.lock
