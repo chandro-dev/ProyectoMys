@@ -13,8 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el código de la aplicación
 COPY ./app /app/
 
-# Exponer el puerto donde corre la aplicación
+# Configurar el PYTHONPATH para que incluya el directorio actual (./)
+ENV PYTHONPATH=/app
+
+# Exponer el puerto en el que la app va a correr (por ejemplo, 8000)
 EXPOSE 8000
 
-# Comando para correr la aplicación
+# Comando para ejecutar la app usando uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
