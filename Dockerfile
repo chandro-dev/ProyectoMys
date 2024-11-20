@@ -1,22 +1,22 @@
-# Usar una imagen base ligera
+# Usar una imagen base de Python
 FROM python:3.11-slim
 
-# Establecer el directorio de trabajo
+# Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Copiar los archivos de requerimientos
-COPY requirements.txt /app/
+# Copiar el archivo requirements.txt y luego instalar las dependencias
+COPY requirements.txt .
 
-# Instalar las dependencias
+# Instalar las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el código de la aplicación
-COPY ./app /app/
+# Copiar todo el código de la aplicación al contenedor
+COPY . .
 
-# Configurar el PYTHONPATH para que incluya el directorio actual (./)
+# Establecer el PYTHONPATH a /app para que Python pueda encontrar los módulos
 ENV PYTHONPATH=/app
 
-# Exponer el puerto en el que la app va a correr (por ejemplo, 8000)
+# Exponer el puerto en el que la app va a correr
 EXPOSE 8000
 
 # Comando para ejecutar la app usando uvicorn
