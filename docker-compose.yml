@@ -1,13 +1,13 @@
 version: '3.9'
 
 services:
-  fastapi:
+  backendCRM:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/app  # Para desarrollo, sincroniza los cambios locales
+      - ./src:/app  # Sincroniza la carpeta src en el contenedor
     environment:
       - ENVIRONMENT=development
